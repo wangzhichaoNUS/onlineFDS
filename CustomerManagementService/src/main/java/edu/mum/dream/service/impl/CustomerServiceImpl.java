@@ -36,6 +36,11 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDao.findOne(id);
 	}
 
+	@Override
+	public boolean checkCusByEmailnPhone(String email, String phonenum) {
+		return customerDao.checkCusByEmailnPhon(email,phonenum);
+	}
+
 }
 
 

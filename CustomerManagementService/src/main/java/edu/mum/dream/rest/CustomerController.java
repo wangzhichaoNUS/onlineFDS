@@ -57,12 +57,17 @@ public class CustomerController {
         return creditService.findByCardHolder(customerId);
     }
 
+	@GetMapping(value = "/signin/{email}/{phonenum}")
+	public boolean checkone(@PathVariable String email,@PathVariable String phonenum) {
+		return customerService.checkCusByEmailnPhone(email,phonenum);
+	}
+
 	@PutMapping
 	public Customer update(@RequestBody Customer customer) {
 		return customerService.update(customer);
 	}
 
-	@GetMapping
+	@GetMapping("/getall")
 	public List<Customer> findAll() {
 		return customerService.findAll();
 	}

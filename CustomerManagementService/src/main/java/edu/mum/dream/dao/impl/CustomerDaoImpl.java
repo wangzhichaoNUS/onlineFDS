@@ -11,5 +11,14 @@ public class CustomerDaoImpl extends GenericDaoImpl<Customer> implements Custome
 	public CustomerDaoImpl() {
 		super.setDaoType(Customer.class);
 	}
-	
+
+	@Override
+	public boolean checkCusByEmailnPhon(String email, String phonenum) {
+		String hql = "SELECT COUNT(c) FROM Customer c WHERE c.email = :email AND c.phoneNumber = :phonenum";
+		Long count = (Long) entityManager.createQuery(hql)
+				.setParameter("email", email)
+				.setParameter("phonenum", phonenum)
+				.getSingleResult();
+		return count > 0;
+	}
 }

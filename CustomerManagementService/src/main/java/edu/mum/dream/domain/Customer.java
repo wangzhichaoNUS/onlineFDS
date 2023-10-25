@@ -45,7 +45,7 @@ public class Customer implements Serializable{
 	@Size(min=4, max=32, message = "{Size.email }")
 	private String email;
 	
-	@Column(length = 50)
+	@Column(length = 50,name = "phone_number")
 	//@NotNull(message= "{Min.customer.phone}")
 	//@Size(min=10, max=10, message="{Size.phoneNumber }")
 	private String phoneNumber;

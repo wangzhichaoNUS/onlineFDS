@@ -9,4 +9,6 @@ public interface CustomerService {
 	public List<Customer> findAll();
 	public Customer findOne(Long id);
 
+	public boolean checkCusByEmailnPhone(String email,String phonenum);
+
 }

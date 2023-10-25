@@ -4,5 +4,5 @@ import edu.mum.dream.domain.Customer;
 
 
 public interface CustomerDao extends GenericDao<Customer> {
-
+    public boolean checkCusByEmailnPhon(String email,String phonenum);
 }
