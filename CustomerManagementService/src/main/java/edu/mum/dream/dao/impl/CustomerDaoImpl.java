@@ -21,4 +21,13 @@ public class CustomerDaoImpl extends GenericDaoImpl<Customer> implements Custome
 				.getSingleResult();
 		return count > 0;
 	}
+
+	@Override
+	public void savecuss(String email, String phonenum,String userAvatar, String time) {
+		Customer customer = new Customer();
+		customer.setEmail(email);
+		customer.setPhoneNumber(phonenum);
+		customer.setLastName(userAvatar);
+		entityManager.persist(customer);
+	}
 }

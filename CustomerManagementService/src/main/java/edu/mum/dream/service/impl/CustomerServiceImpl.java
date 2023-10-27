@@ -36,6 +36,12 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDao.findOne(id);
 	}
 
+
+	@Override
+	public void savecus(String email, String phonenum,String userAvatar, String time) {
+		customerDao.savecuss(email,phonenum,userAvatar,time);
+	}
+
 	@Override
 	public boolean checkCusByEmailnPhone(String email, String phonenum) {
 		return customerDao.checkCusByEmailnPhon(email,phonenum);
