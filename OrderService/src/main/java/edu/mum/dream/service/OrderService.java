@@ -12,5 +12,11 @@ public interface OrderService {
 	public Order findOne(Long id);
 	public List<Order> findOneByUserId(Long userId);
 	public List<Order> findAllSubSelect();
+
+	public List<Order> findafByUserId(Long userId);
+
+	public List<Order> findwcByUserId(Long userId);
+
+	public List<Order> findwpByUserId(Long userId);
 	
 }

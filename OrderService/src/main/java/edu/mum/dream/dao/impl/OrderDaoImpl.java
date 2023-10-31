@@ -28,6 +28,28 @@ public class OrderDaoImpl extends GenericDaoImpl<Order> implements OrderDao {
 		Query query = entityManager.createQuery("select r from  Order  r  " + "where r.userName =:userId");
 		return (List<Order>) query.setParameter("userId", userId).getResultList();
 	}
+	public List<Order> findwpByUserId(Long userId) {
+		System.out.println(userId);
+		Query query = entityManager.createQuery("select r from  Order  r  " + "where r.userName =:userId and r.orderStatus =:status");
+		query.setParameter("userId", userId);
+		query.setParameter("status", Order.OrderStatus.Processing);
+		return (List<Order>)query.getResultList();
+	}
+	public List<Order> findwcByUserId(Long userId) {
+		System.out.println(userId);
+		Query query = entityManager.createQuery("select r from  Order  r  " + "where r.userName =:userId and r.orderStatus =:status");
+		query.setParameter("userId", userId);
+		query.setParameter("status", Order.OrderStatus.Paid);
+		return (List<Order>)query.getResultList();
+	}
+	public List<Order> findafByUserId(Long userId) {
+		System.out.println(userId);
+		Query query = entityManager.createQuery("select r from  Order  r  " + "where r.userName =:userId and r.orderStatus =:status");
+		query.setParameter("userId", userId);
+		query.setParameter("status", Order.OrderStatus.Finished);
+		return (List<Order>)query.getResultList();
+	}
+
 
 	public List<Order> findAllSubSelect() {
 		// hydrate since LAZY load

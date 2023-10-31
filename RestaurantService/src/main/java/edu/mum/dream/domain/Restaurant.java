@@ -3,17 +3,7 @@ package edu.mum.dream.domain;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -29,6 +19,17 @@ public class Restaurant {
 	@NotNull
 	@Size(min = 4, max = 32, message = "{Size.restaurantName}")
 	private String restaurantName;
+
+	@NotNull
+	@Size(min = 4, max = 32, message = "{Size.restaurantName}")
+	private String phoneNumber;
+
+	@NotNull
+	@Size(min = 4, max = 32, message = "{Size.restaurantName}")
+	private String business;
+
+	@NotNull
+	private String coverImg ;
 	
 	@NotNull
 	@Size(min = 4, max = 32, message = "{Size.restaurantCatalog}")
@@ -88,4 +89,27 @@ public class Restaurant {
 		this.address = address;
 	}
 
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getBusiness() {
+		return business;
+	}
+
+	public void setBusiness(String business) {
+		this.business = business;
+	}
+
+	public String getCoverImg() {
+		return coverImg;
+	}
+
+	public void setCoverImg(String coverImg) {
+		this.coverImg = coverImg;
+	}
 }

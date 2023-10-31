@@ -111,5 +111,9 @@ public class OrderServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(OrderServiceApplication.class, args);
 	}
+	static private String menuUrl= "http://Restaurant-Microservice/api/restaurants/foodmenu/";
+
+
+
 
 }

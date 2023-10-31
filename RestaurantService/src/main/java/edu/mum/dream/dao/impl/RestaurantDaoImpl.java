@@ -23,7 +23,7 @@ public class RestaurantDaoImpl extends GenericDaoImpl<Restaurant> implements Res
 	public List<FoodMenu>showFoodMenu(Long restaurantId){
 		
 		Query query = entityManager
-				.createQuery("select r.foodMenu from Restaurant  r  " + "where food.RESTAURANT_ID =:resturantId");
+				.createQuery("select r.foodMenu from Restaurant  r  " + "where r.id =:resturantId");
 		return (List<FoodMenu>) query.setParameter("resturantId", restaurantId).getResultList();
 
 	}

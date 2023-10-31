@@ -2,6 +2,7 @@ package edu.mum.dream.service;
 
 import java.util.List;
 import edu.mum.dream.domain.Customer;
+import edu.mum.dream.domain.User;
 import org.springframework.web.bind.annotation.PathVariable;
 
 public interface CustomerService {
@@ -13,5 +14,7 @@ public interface CustomerService {
 	public void savecus(String email,String phonenum ,String userAvatar,String time);
 
 	public boolean checkCusByEmailnPhone(String email,String phonenum);
+
+	public User findOneUser(String email, String phonenum);
 
 }

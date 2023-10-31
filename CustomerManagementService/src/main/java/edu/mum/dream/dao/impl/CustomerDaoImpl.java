@@ -1,5 +1,6 @@
 package edu.mum.dream.dao.impl;
 
+import edu.mum.dream.domain.User;
 import org.springframework.stereotype.Repository;
 
 import edu.mum.dream.dao.CustomerDao;
@@ -20,6 +21,20 @@ public class CustomerDaoImpl extends GenericDaoImpl<Customer> implements Custome
 				.setParameter("phonenum", phonenum)
 				.getSingleResult();
 		return count > 0;
+	}
+
+	public User findCusByEmailNPhone(String email, String phonenum) {
+		User user;
+		String hql = "FROM Customer c WHERE c.email = :email AND c.phoneNumber = :phonenum";
+		Customer temp = entityManager.createQuery(hql, Customer.class).setParameter("email", email).setParameter("phonenum", phonenum).getSingleResult();
+		user = new User();
+		user.setId(String.valueOf(temp.getId()));
+		user.setUserPhone(temp.getFirstName());
+		user.setUserAddress(user.getUserAddress());
+		user.setUserName(temp.getEmail());
+		user.setUserPass(temp.getPhoneNumber());
+		user.setUserAvatar(temp.getLastName());
+		return user;
 	}
 
 	@Override

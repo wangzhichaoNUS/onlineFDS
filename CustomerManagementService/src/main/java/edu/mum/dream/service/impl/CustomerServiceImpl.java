@@ -2,6 +2,7 @@ package edu.mum.dream.service.impl;
 
 import java.util.List;
 
+import edu.mum.dream.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,6 +46,10 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public boolean checkCusByEmailnPhone(String email, String phonenum) {
 		return customerDao.checkCusByEmailnPhon(email,phonenum);
+	}
+
+	public User findOneUser(String email, String phonenum) {
+		return customerDao.findCusByEmailNPhone(email,phonenum);
 	}
 
 }

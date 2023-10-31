@@ -12,6 +12,8 @@ public class FoodItem  implements Serializable{
 	private String foodName;
 	private double foodPrice;
 	private int quantity;
+
+	private int user_id;
 	
 
 	public Long getFoodMenuID() {
@@ -53,5 +55,13 @@ public class FoodItem  implements Serializable{
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	public int getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 }

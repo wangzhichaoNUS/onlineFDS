@@ -30,6 +30,9 @@ public class FoodMenu {
 	@NotNull
 	@Size(min = 4, max = 32, message = "{Size.foodCatalog}")
 	private String foodCatalog;
+
+	@NotNull
+	private String coverImg;
 	
 	@NotNull(message = "{Size.foodPrice}")
 	private double foodPrice;
@@ -76,4 +79,11 @@ public class FoodMenu {
 		this.foodPrice = foodPrice;
 	}
 
+	public String getCoverImg() {
+		return coverImg;
+	}
+
+	public void setCoverImg(String coverImg) {
+		this.coverImg = coverImg;
+	}
 }

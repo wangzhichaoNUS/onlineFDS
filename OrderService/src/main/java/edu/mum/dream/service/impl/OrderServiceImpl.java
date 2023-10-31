@@ -42,7 +42,21 @@ public class OrderServiceImpl implements OrderService{
 		
 		return orderDao.findAllSubSelect();
 	}
-	
-	
+
+	@Override
+	public List<Order> findafByUserId(Long userId) {
+		return orderDao.findafByUserId(userId);
+	}
+
+	@Override
+	public List<Order> findwcByUserId(Long userId) {
+		return orderDao.findwcByUserId(userId);
+	}
+
+	@Override
+	public List<Order> findwpByUserId(Long userId) {
+		return orderDao.findwpByUserId(userId);
+	}
+
 
 }

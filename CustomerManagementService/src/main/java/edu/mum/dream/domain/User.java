@@ -10,6 +10,11 @@ public class User {
     private String userPhone;
     private String userAvatar;
 
+    public User() {
+        // 默认构造函数
+    }
+
+
     public String get_id() {
         return _id;
     }
@@ -73,5 +78,16 @@ public class User {
     public void setUserAvatar(String userAvatar) {
         this.userAvatar = userAvatar;
     }
+
+//    public User(String userName, String userPass, String userAvatar) {
+//        this.userName = userName;
+//        this.userPass = userPass;
+//        this.userAvatar = userAvatar;
+//    }
+//
+//    public User(String userName, String userPass) {
+//        this.userName = userName;
+//        this.userPass = userPass;
+//    }
 }
 

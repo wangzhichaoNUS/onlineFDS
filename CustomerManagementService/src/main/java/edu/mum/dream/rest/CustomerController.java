@@ -75,14 +75,42 @@ public class CustomerController {
         return creditService.findByCardHolder(customerId);
     }
 
-	@GetMapping(value = "/signin/{email}/{phonenum}")
-	public boolean checkone(@PathVariable String email,@PathVariable String phonenum) {
-		return customerService.checkCusByEmailnPhone(email,phonenum);
+//	@GetMapping(value = "/signin/{email}/{phonenum}")
+//	public boolean checkone(@PathVariable String email,@PathVariable String phonenum) {
+//		return customerService.checkCusByEmailnPhone(email,phonenum);
+//	}
+
+	@PostMapping(value = "/signin")
+	public ResponseEntity<CustomResponse> checkone(@Valid @RequestBody User user) {
+		if(customerService.checkCusByEmailnPhone(user.getUserName(),user.getUserPass()))
+		{
+			CustomResponse response = new CustomResponse("成功", 1);
+			response.setUser(customerService.findOneUser(user.getUserName(),user.getUserPass()));
+			response.setAccess_token("111");
+			return ResponseEntity.ok(response);
+		}else {
+			CustomResponse response = new CustomResponse("失败", 0);
+			return ResponseEntity.ok(response);
+		}
 	}
 
-	@PutMapping
-	public Customer update(@RequestBody Customer customer) {
-		return customerService.update(customer);
+//	@PutMapping("/update")
+//	public Customer update(@RequestBody Customer customer) {
+//		return customerService.update(customer);
+//	}
+
+	@PutMapping("/update")
+	public void update(@Valid @RequestBody User user) {
+		Customer customer = new Customer();
+		customer.setId(Long.parseLong(user.getId()));
+		Address ad = new Address();
+		ad.setStreet(user.getUserAddress());
+//		customer.getAddress().setStreet(user.getUserAddress());
+////		customer.setAddress(customer.getAddress());
+		customer.setEmail(user.getUserName());
+		customer.setFirstName(user.getUserPhone());
+		customer.setPhoneNumber(user.getUserPass());
+		customerService.update(customer);
 	}
 
 	@GetMapping("/getall")
