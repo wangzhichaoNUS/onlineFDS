@@ -74,4 +74,13 @@ jobs:
         mvn -f RestaurantService/pom.xml clean package &&
         mvn -f CustomerManagementService/pom.xml clean package
         "
+    - name: Start Microservices on Server
+      run: |
+        sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} "
+        java -jar /home/ubuntu/code/test/onlineFDS/OrderService/target/order-service.jar &
+        java -jar /home/ubuntu/code/test/onlineFDS/PaymentManagment/target/payment-managment.jar &
+        java -jar /home/ubuntu/code/test/onlineFDS/RestaurantService/target/restaurant-service.jar &
+        java -jar /home/ubuntu/code/test/onlineFDS/ServiceDiscovery/target/service-discovery.jar &
+        java -jar /home/ubuntu/code/test/onlineFDS/CustomerManagementService/target/customer-management-service.jar &
+        "
 
