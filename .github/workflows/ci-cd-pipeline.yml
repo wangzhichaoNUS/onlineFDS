@@ -55,3 +55,25 @@ jobs:
         cd ~/code/test/onlineFDS &&
         git pull origin develop
         '
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v2
+      with:
+        java-version: '1.8'
+        distribution: 'adopt'
+
+    # 循环遍历每个微服务并执行 Maven 构建
+    - name: Build ServiceDiscovery
+      run: mvn -f ServiceDiscovery/pom.xml clean install
+    
+    - name: Build OrderService
+      run: mvn -f OrderService/pom.xml clean install
+
+    - name: Build PaymentManagment
+      run: mvn -f PaymentManagment/pom.xml clean install
+
+    - name: Build RestaurantService
+      run: mvn -f RestaurantService/pom.xml clean install
+
+    - name: Build CustomerManagementService
+      run: mvn -f CustomerManagementService/pom.xml clean install
+
