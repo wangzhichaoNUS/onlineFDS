@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: Java Microservices CI with Maven
 
 on:
   push:
@@ -7,27 +7,38 @@ on:
     branches: [ develop ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v2
-      with:
-        java-version: '8'
-        distribution: 'adopt'
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v2
+        with:
+          java-version: '8'
+          distribution: 'adopt'
 
-    - name: Cache Maven packages
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-        restore-keys: ${{ runner.os }}-m2
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
 
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      # Repeat the following steps for each microservice
 
-    - name: Run tests
-      run: mvn test
+      - name: Build and Test ServiceDiscovery
+        run: mvn -B package --file ServiceDiscovery/pom.xml
+
+      - name: Build and Test OrderService
+        run: mvn -B package --file OrderService/pom.xml
+
+      - name: Build and Test PaymentManagment
+        run: mvn -B package --file PaymentManagment/pom.xml
+
+      - name: Build and Test RestaurantService
+        run: mvn -B package --file RestaurantService/pom.xml
+
+      - name: Build and Test CustomerManagementService
+        run: mvn -B package --file CustomerManagementService/pom.xml
